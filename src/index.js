@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Login from './Components/Login';
+import ProductPage from './Components/ProductPage';
+import ProdDetail from './Components/ProdDetail';
+import { BrowserRouter,  Routes, Route, } from "react-router-dom";
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />}/>
+        <Route path="/add-data" element={<ProductPage />} />
+        <Route path="/product" element={<ProdDetail />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
