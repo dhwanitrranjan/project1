@@ -17,7 +17,8 @@ root.render(
       <Routes>
         <Route path="/" element={<Login />}/>
         <Route path="/add-data" element={<ProductPage />} />
-        <Route path="/product" element={<ProdDetail />} />
+        {/* <Route path="/product" element={<ProdDetail />} /> */}
+        <Route path="/add-data/product-details" element={<ProdDetail />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

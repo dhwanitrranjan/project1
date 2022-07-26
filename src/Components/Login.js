@@ -31,7 +31,6 @@ function Login() {
         setErr({...err, passwordErr:""})
       }
     }
-
   }
 
   return (
@@ -39,7 +38,7 @@ function Login() {
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" name="username" onChange={handleInput} />
+        <Form.Control type="email" placeholder="Enter email" name="username" onChange={handleInput} required/>
         <Form.Text className="text-muted">
             We'll never share your email with anyone else.
         </Form.Text>
@@ -47,7 +46,7 @@ function Login() {
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" name="password" onChange={handleInput} />
+        <Form.Control type="password" placeholder="Password" name="password" onChange={handleInput} required/>
         </Form.Group>
         {err.passwordErr}
         <Form.Group className="mb-3" controlId="formBasicCheckbox">

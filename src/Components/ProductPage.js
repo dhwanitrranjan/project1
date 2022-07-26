@@ -7,62 +7,54 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ProdDetail from './ProdDetail';
 import ReactDOM from 'react-dom/client';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const ProductContext = createContext();
+// let navigate = useNavigate();
 
 export default function ProductPage() {
+    let brands = ["OPPO", "realme", "POCO", "Infinix", "Samsung", "Mi", "Apple", "Huawei", "Microsoft Surface", "HP Pavilion", "Impression of Acqua Di Gio",
+    "Royal_Mirage", "Fog Scent Xpressio", "Al Munakh", "Lord - Al-Rehab", "L'Oreal Paris"]
+
+    let cats = ["smartphones", "laptops", "fragrances", "skincare", "groceries", "home-decoration", "furniture", "tops", "mens-shirts", "mens-shoes", "mens-watches", 
+    "womens-dresses", "womens-shoes", "womens-watches", "womens-bags", "womens-jewellery"]
+
+
     // console.log(data["products"])
     // let navigate = useNavigate();
 
     const handleClick = (e) =>{
-        // let EleData_ID = Data["products"]["id"];
+        // let EleData_ID = e.data["products"]["id"];
+        console.log(e)
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(
         <ProductContext.Provider value={e}>
-            {/* <ProdDetail /> */}
+            <ProdDetail />
         </ProductContext.Provider>
+        // navigate("/add-data/product-details")
         )
     }
 
     return (
-        <div>            
+        <div>           
             <Container>
                 <Row>
-                    <Col sm={{span:2}}>
+                    <Col md={{span:2}}>
                         <h3>Filter</h3>
                         <Form>
                             <h5>Brands</h5>
-                            <Form.Check label={"OPPO"}/>
-                            <Form.Check label={"realme"}/>
-                            <Form.Check label={"POCO"}/>
-                            <Form.Check label={"Infinix"}/>
-                            <Form.Check label={"Samsung"}/>
-                            <Form.Check label={"Mi"}/>
+                            {brands.map((brand) => {
+                                return <Form.Check label={brand}/>
+                            })}
+                            
                         </Form>
                         <br/>    
                         <Form>
                             <h5>Categories</h5>
-                            <Form.Check label={"smartphones"}/>
-                            <Form.Check label={"laptops"}/>
-                            <Form.Check label={"fragrances"}/>
-                            <Form.Check label={"skincare"}/>
-                            <Form.Check label={"groceries"}/>
-                            <Form.Check label={"home-decoration"}/>
-                            <Form.Check label={"furniture"}/>
-                            <Form.Check label={"tops"}/>
-                            <Form.Check label={"mens-shirts"}/>
-                            <Form.Check label={"mens-shoes"}/>
-                            <Form.Check label={"mens-watches"}/>
-                            <Form.Check label={"womens-dresses"}/>
-                            <Form.Check label={"womens-shoes"}/>
-                            <Form.Check label={"womens-watches"}/>
-                            <Form.Check label={"womens-bags"}/>
-                            <Form.Check label={"womens-jewellery"}/>
-                            <Form.Check label={"sunglasses"}/>
-                            <Form.Check label={"automotive"}/>
-                            <Form.Check label={"motorcycle"}/>
-                            <Form.Check label={"lighting"}/>
+                            {cats.map((cat)=>{
+                                return <Form.Check label={cat}/>                            
+                            })}
                         </Form>
                         <br/>
                         <Form>
@@ -76,11 +68,12 @@ export default function ProductPage() {
                         </Form>                      
 
                     </Col>
-                    <Col sm={{span:9, offset:1}}>
+                    <Col md={{span:9, offset:1}}>
                         <Row>
                         {data["products"].map((product, index) => {
                             return (
-                            <Col sm={{span:4}}>
+                            <Col md={{span:4}}>
+                                {/* {console.log(product["id"])} */}
                                 <Card style={{ width: '18rem', height:'36rem', margin:'1rem'}}>
                                     <Card.Img variant="top" src={product["images"][0]} />
                                     <Card.Body>
@@ -88,7 +81,9 @@ export default function ProductPage() {
                                         <Card.Title>${product["price"]}</Card.Title>
                                         <Card.Text>{product["description"]}</Card.Text>
                                         <Card.Text>Rating: {product["rating"]}</Card.Text>
-                                        <a onClick={() => handleClick(data["id"])} href="/product">View Product</a>
+                                        {/* <a onClick={() => handleClick(data["id"])} href="/product">View Product</a> */}
+                                        {/* <Button onClick={() => navigate("/add-data/product-details")}>View Product</Button> */}
+                                        <Button onClick={() => handleClick(product["id"])}>View Product</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
