@@ -8,19 +8,22 @@ import Login from './Components/Login';
 import ProductPage from './Components/ProductPage';
 import ProdDetail from './Components/ProdDetail';
 import { BrowserRouter,  Routes, Route, } from "react-router-dom";
-
+import { Provider } from 'react-redux';
+import configStore from './Components/reducers'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />}/>
-        <Route path="/add-data" element={<ProductPage />} />
-        {/* <Route path="/product" element={<ProdDetail />} /> */}
-        <Route path="/add-data/product-details" element={<ProdDetail />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={configStore}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />}/>
+          <Route path="/add-data" element={<ProductPage />} />
+          <Route path="/product" element={<ProdDetail />} />
+          {/* <Route path="/add-data/product-details" element={<ProdDetail />} /> */}
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {ProductContext} from './ProductPage';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import Data from '../Data/products.json';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 
 function ProdDetail() {
-    const ele_id = useContext(ProductContext)
+    const ele_id = useSelector(state => state.selectedCard)
 
     return (
         <div>
