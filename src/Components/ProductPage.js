@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { isSelected, loadAllProducts } from "./reducers";
 import axios from 'axios';
+import LoadNavbar from './LoadNavbar';
 
 export default function ProductPage() {
     let brands = ["OPPO", "realme", "POCO", "Infinix", "Samsung", "Mi", "Apple", "Huawei", "Microsoft Surface", "HP Pavilion", "Impression of Acqua Di Gio",
@@ -61,7 +62,6 @@ export default function ProductPage() {
         }
 
         if (filter.categoryFlag){
-            console.log("inside")
             fil = fil.filter((product) => {
                 if (filter.category.includes(product.category)){ 
                     return product
@@ -86,7 +86,6 @@ export default function ProductPage() {
                 };
             })
         }
-        console.log(fil, filter.brand)
         setDisplayCards(fil);
 
         //All filters turned off
@@ -96,12 +95,10 @@ export default function ProductPage() {
     }, [filter,allProducts])
 
     const handleFilter =(e) =>{
-        console.log(e.target.className)
         //Brand handle
         if (e.target.className === "brands"){
             var brd = filter.brand;
             if (e.target.checked){
-                console.log("sup")
                 brd.push(e.target.name);
                 setFilter({...filter, brand: brd, brandFlag: true});
             } else {
@@ -166,7 +163,9 @@ export default function ProductPage() {
         }
 
     return (
-        <div>           
+        <div>    
+                <LoadNavbar />    
+                <br/>   
                 <Row>
                     <Col md={{span:2, offset:1}}>
                         <h3>Filter</h3>
@@ -211,17 +210,18 @@ export default function ProductPage() {
                     </Col>
                     <Col md={{span:8, offset:1}}>
                         <Row>
+                        <h3>Items List</h3>    
                         {displayCards.map((product, index) => {
                             return (
                             <Col md={{span:4}}>
-                                {/* {console.log(product["id"])} */}
-                                <Card style={{ width: '18rem', height:'36rem', margin:'1rem'}}>
+                                <Card style={{ width: '18rem', height:'45rem', margin:'1rem'}}>
                                     <Card.Img variant="top" src={product["images"][0]} />
                                     <Card.Body>
                                         <Card.Title>{product["brand"]} {product["category"]}</Card.Title>
-                                        <Card.Title>${product["price"]}</Card.Title>
+                                        <Card.Title className="text-decoration-line-through" style={{color:"red"}}>MRP: ${product["price"]}</Card.Title>
+                                        <Card.Title style={{color:"green"}}>Offer Price: ${Math.round(product["price"]-product["price"]*product["discountPercentage"]/100)}</Card.Title>
                                         <Card.Text>{product["description"]}</Card.Text>
-                                        <Card.Text>Rating: {product["rating"]}</Card.Text>
+                                        <Card.Text style={{color:"blue"}}>Rating: {product["rating"]}</Card.Text>
                                         <Button onClick={() => handleClick(product["id"])}>View Product</Button>
                                     </Card.Body>
                                 </Card>

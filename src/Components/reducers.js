@@ -18,6 +18,12 @@ export const allProductsSlice = createSlice({
         loadAllProducts: (state, action) => {
             state.allProducts = action.payload;
         },
+        loadcartCount: (state, action)=> {
+            state.cartCount += 1;
+        },
+        addtoCart: (state, action) =>{
+            state.cart = action.payload
+        }
     }
 }); 
 
@@ -25,5 +31,4 @@ export default configureStore ({
     reducer: allProductsSlice.reducer
 })
 
-export const { isSelected, loadAllProducts} = allProductsSlice.actions;
-
+export const { isSelected, loadAllProducts, loadcartCount, addtoCart } = allProductsSlice.actions;

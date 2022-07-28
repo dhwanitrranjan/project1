@@ -1,17 +1,36 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import Data from '../Data/products.json';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { addtoCart, loadcartCount} from './reducers';
+import LoadNavbar from './LoadNavbar';
+
 
 
 function ProdDetail() {
     const ele_id = useSelector(state => state.selectedCard)
+    const cart = useSelector(state => state.cart)
+    var dispatch = useDispatch();
+
+    const handleClick = (e) =>{
+        var final_cart = Object.assign({}, cart)
+        if (e in final_cart){
+            final_cart[e] += 1
+        } else {
+            final_cart = 1
+        }
+        console.log(cart)
+        dispatch(addtoCart(final_cart))
+        dispatch(loadcartCount())
+    }
 
     return (
         <div>
+            <LoadNavbar />    
+            <br/>
             {Data["products"].filter((product, index) =>
             (product["id"] === ele_id),
             ).map((prod, index) => {
@@ -31,7 +50,7 @@ function ProdDetail() {
                             <h3>${prod["price"]}</h3>
                             <p>{prod["description"]}</p>
                             <p>{prod["rating"]}</p>
-                            <Button>Add to Cart</Button>
+                            <Button onClick={()=> handleClick(prod["id"])}>Add to Cart</Button>
                         </Col>
                     </Row>
                 </Container>
