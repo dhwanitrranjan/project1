@@ -2,35 +2,51 @@ import React from 'react';
 import LoadNavbar from './LoadNavbar';
 import Data from '../Data/products.json';
 import {useSelector} from 'react-redux';
-import { Row } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
-function cartPage() {
+function CartPage() {
   const cart_id_arr = useSelector(state =>state.cart)
+  console.log(cart_id_arr)
+  let total = 0
   return (
     <div>
       <LoadNavbar />    
       <br/>
       <Container>
         <Row>
-          {Data["product"].filter((prod)=>{
-            
+          <Col md={{span:8}}>
+          {Data.products.filter((prod)=>{
+            // console.log(prod.id)
+            // console.log(cart_id_arr)
+            if (prod.id in cart_id_arr) {
+              total += Math.round(prod["price"]-prod["price"]*prod["discountPercentage"]/100)*cart_id_arr[prod.id]
+              return prod}
           }).map((prod)=>{
-            return <Card style={{ width: '100%', height:'25rem', margin:'1rem'}}>
-            <Card.Img variant="left" src={product["images"][0]} />
-            <Card.Body>
-              <Card.Title>{product["brand"]} {product["category"]}</Card.Title>
-              <Card.Title className="text-decoration-line-through" style={{color:"red"}}>MRP: ${product["price"]}</Card.Title>
-              <Card.Title style={{color:"green"}}>Offer Price: ${Math.round(product["price"]-product["price"]*product["discountPercentage"]/100)}</Card.Title>
-              <Card.Text>{product["description"]}</Card.Text>
-              <Card.Text style={{color:"blue"}}>Rating: {product["rating"]}</Card.Text>
-              <Button onClick={() => handleClick(product["id"])}>View Product</Button>
-            </Card.Body>
-          </Card> 
+            return <>
+            <Card style={{ width: '100%', height:'40rem', margin:'1rem'}}>
+              <Card.Img style={{objectFit:"contain", width: '100%', height:'25rem', margin:'1rem'}} variant="top" src={prod["images"][0]} />
+              <Card.Body>
+                <Card.Title>{prod["brand"]} {prod["category"]}</Card.Title>
+                <Card.Text className="text-decoration-line-through" style={{color:"red"}}>MRP: ${prod["price"]}</Card.Text>
+                <Card.Text style={{color:"green"}}>Offer Price: ${Math.round(prod["price"]-prod["price"]*prod["discountPercentage"]/100)}</Card.Text>
+                <Card.Title>Quantity: {cart_id_arr[prod.id]}</Card.Title>
+              </Card.Body>
+          </Card>
+            </>
           })}
+          </Col>
+          <Col>
+            <h3>Total Cost: {total}</h3>
+            <Button style={{margin:'38%'}}>Checkout</Button>
+          </Col>
         </Row>
       </Container>
     </div>
   )
 }
 
-export default cartPage
+export default CartPage

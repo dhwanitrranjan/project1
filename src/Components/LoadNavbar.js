@@ -16,6 +16,11 @@ function LoadNavbar() {
   const handleClick = () =>{
     navigate('/add-data')
   }
+
+  const handlecart = () =>{
+    navigate('/cartPage')
+  }
+
   return (
     <div>
         <Navbar bg="dark" variant="dark">
@@ -35,10 +40,11 @@ function LoadNavbar() {
                     height="70"
                     className="d-inline-block align-top"
                     alt="React Bootstrap logo"
+                    onClick={handlecart}
                   />
                 </Col>
                 <Col>
-                  <Nav style={{color:"white"}}><h5>{cartCount}</h5></Nav>
+                  <Nav style={{color:"white"}} onClick={handlecart}><h5>{cartCount}</h5></Nav>
                 </Col>
               </Row>
             </div>

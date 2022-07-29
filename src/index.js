@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import Login from './Components/Login';
 import ProductPage from './Components/ProductPage';
 import ProdDetail from './Components/ProdDetail';
+import CartPage from './Components/cartPage';
 import { BrowserRouter,  Routes, Route, } from "react-router-dom";
 import { Provider } from 'react-redux';
 import configStore from './Components/reducers'
@@ -20,6 +21,7 @@ root.render(
           <Route path="/" element={<Login />}/>
           <Route path="/add-data" element={<ProductPage />} />
           <Route path="/product" element={<ProdDetail />} />
+          <Route path="/cartPage" element={<CartPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

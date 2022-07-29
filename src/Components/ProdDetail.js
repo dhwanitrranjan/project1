@@ -17,12 +17,13 @@ function ProdDetail() {
 
     const handleClick = (e) =>{
         var final_cart = Object.assign({}, cart)
+        console.log(typeof e)
         if (e in final_cart){
             final_cart[e] += 1
         } else {
-            final_cart = 1
+            final_cart[e] = 1
         }
-        console.log(cart)
+        console.log(final_cart)
         dispatch(addtoCart(final_cart))
         dispatch(loadcartCount())
     }
