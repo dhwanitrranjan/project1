@@ -8,9 +8,10 @@ import Login from './Components/Login';
 import ProductPage from './Components/ProductPage';
 import ProdDetail from './Components/ProdDetail';
 import CartPage from './Components/cartPage';
+import AddressPage from './Components/AddressPage';
 import { BrowserRouter,  Routes, Route, } from "react-router-dom";
 import { Provider } from 'react-redux';
-import configStore from './Components/reducers'
+import configStore from './Components/reducers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
           <Route path="/add-data" element={<ProductPage />} />
           <Route path="/product" element={<ProdDetail />} />
           <Route path="/cartPage" element={<CartPage />} />
+          <Route path="/addressPage" element={<AddressPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

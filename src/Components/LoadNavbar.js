@@ -8,6 +8,7 @@ import {useSelector} from 'react-redux';
 import { Col } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 function LoadNavbar() {
   const cartCount = useSelector(state => state.cartCount)
@@ -26,13 +27,11 @@ function LoadNavbar() {
         <Navbar bg="dark" variant="dark">
             <Container>
             <Navbar.Brand onClick={handleClick}><h2>eBaazaar</h2></Navbar.Brand>
-            {/* <Nav className="me-auto">
-                <Nav.Link href="#home">Home</Nav.Link>
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav> */}
             <div className="justify-content-end">
               <Row>
+                <Col>
+                  <Button>Add</Button>
+                </Col>
                 <Col>
                   <img
                     src={cartImg}

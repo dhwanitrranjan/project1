@@ -7,11 +7,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { useNavigate } from 'react-router-dom';
 
 function CartPage() {
   const cart_id_arr = useSelector(state =>state.cart)
-  console.log(cart_id_arr)
+  const navigate = useNavigate()
   let total = 0
+
   return (
     <div>
       <LoadNavbar />    
@@ -20,8 +22,6 @@ function CartPage() {
         <Row>
           <Col md={{span:8}}>
           {Data.products.filter((prod)=>{
-            // console.log(prod.id)
-            // console.log(cart_id_arr)
             if (prod.id in cart_id_arr) {
               total += Math.round(prod["price"]-prod["price"]*prod["discountPercentage"]/100)*cart_id_arr[prod.id]
               return prod}
@@ -41,7 +41,7 @@ function CartPage() {
           </Col>
           <Col>
             <h3>Total Cost: {total}</h3>
-            <Button style={{margin:'38%'}}>Checkout</Button>
+            <Button style={{margin:'38%'}} onClick={()=>navigate('/addressPage')}>Checkout</Button>
           </Col>
         </Row>
       </Container>
