@@ -14,8 +14,12 @@ function LoadNavbar() {
   const cartCount = useSelector(state => state.cartCount)
   const navigate = useNavigate();
 
-  const handleClick = () =>{
+  const handleLogo = () =>{
     navigate('/add-data')
+  }
+
+  const handleAdd = () =>{
+    navigate('/addItem')
   }
 
   const handlecart = () =>{
@@ -26,11 +30,11 @@ function LoadNavbar() {
     <div>
         <Navbar bg="dark" variant="dark">
             <Container>
-            <Navbar.Brand onClick={handleClick}><h2>eBaazaar</h2></Navbar.Brand>
+            <Navbar.Brand onClick={handleLogo}><h2>eBaazaar</h2></Navbar.Brand>
             <div className="justify-content-end">
               <Row>
                 <Col>
-                  <Button>Add</Button>
+                  <Button onClick={handleAdd}>Add</Button>
                 </Col>
                 <Col>
                   <img
