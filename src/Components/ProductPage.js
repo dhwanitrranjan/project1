@@ -210,7 +210,7 @@ export default function ProductPage() {
                     </Col>
                     <Col md={{span:8, offset:1}}>
                         <Row>
-                        <h3>Items List</h3>    
+                        <h3>Shopping Cart</h3>    
                         {displayCards.map((product, index) => {
                             return (
                             <Col md={{span:4}}>

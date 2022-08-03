@@ -31,14 +31,14 @@ function Login() {
       setErr({...err, userNameErr:""})
     }
 
-    if (pw.current.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/)) {
+    if (pw.current.value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,100}$/)) {
       pwErr = true
     } else if (pw.current.value.length < 8){
       setErr({...err, passwordErr:"The length of password should be more 8."})
     } else if (pw.current.value.length === 0) {
       setErr({...err, passwordErr:"Can not be empty."})
     } else {
-      setErr({...err, passwordErr:"Should contain Uppercase, Lowercasenumbers and special charecters."})
+      setErr({...err, passwordErr:"Should contain Uppercase, Lowercase, numbers, special charecters and length should be greater than 8."})
     }
 
     console.log(userErr, pwErr)
