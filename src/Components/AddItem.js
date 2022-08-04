@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import LoadNavbar from './LoadNavbar';
 
 export default function AddItem() {
   var navigate = useNavigate();
@@ -52,6 +53,8 @@ export default function AddItem() {
 
   return (
     <div>
+      <LoadNavbar/>
+      <br/>
       <Container>
         <h3>Add a product</h3>
         <Form className='p-4' onSubmit={handleAddProduct}>

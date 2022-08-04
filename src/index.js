@@ -11,7 +11,7 @@ import CartPage from './Components/cartPage';
 import AddressPage from './Components/AddressPage';
 import { BrowserRouter,  Routes, Route } from "react-router-dom";
 import { Provider } from 'react-redux';
-import configStore from './Components/reducers';
+import configStore from './Components/configureStore';
 import AddItem from './Components/AddItem';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

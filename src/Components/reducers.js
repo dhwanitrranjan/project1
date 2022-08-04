@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { configureStore } from "@reduxjs/toolkit";
 
 
 export const allProductsSlice = createSlice({
@@ -30,8 +29,6 @@ export const allProductsSlice = createSlice({
     }
 }); 
 
-export default configureStore ({
-    reducer: allProductsSlice.reducer
-})
+export default allProductsSlice.reducer
 
 export const { isSelected, loadAllProducts, loadcartCount, addtoCart, ShippingAddress } = allProductsSlice.actions;

@@ -1,13 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch} from "react-redux";
-import data from '../Data/products.json';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import ProdDetail from './ProdDetail';
-import ReactDOM from 'react-dom/client';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { isSelected, loadAllProducts } from "./reducers";

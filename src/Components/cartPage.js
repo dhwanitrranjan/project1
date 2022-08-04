@@ -40,7 +40,7 @@ function CartPage() {
           })}
           </Col>
           <Col>
-            <h3>Total Cost: {total}</h3>
+            <h3>Total Cost: ${total}</h3>
             <Button style={{margin:'38%'}} onClick={()=>navigate('/addressPage')}>Checkout</Button>
           </Col>
         </Row>
